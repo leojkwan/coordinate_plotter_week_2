@@ -21,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.kodeco.android.coordplot.R
 import com.kodeco.android.coordplot.app.widgets.Map
 import com.kodeco.android.coordplot.app.widgets.MapSlider
+import com.kodeco.android.coordplot.app.widgets.PlotSurface
 import com.kodeco.android.coordplot.ui.theme.MyApplicationTheme
 
 class MainActivity : ComponentActivity() {
@@ -34,42 +35,3 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-// TODO Move PlotSurface() and PlotSurfacePreview() to their own file
-@Composable
-fun PlotSurface() {
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = Color.White
-    ) {
-        var xPercentage: Float by remember { mutableStateOf(0.5f) }
-        var yPercentage: Float by remember { mutableStateOf(0.5f) }
-
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-        ) {
-            Map(xPercentage, yPercentage)
-            MapSlider(
-                titleRes = R.string.x_axis,
-                percentage = xPercentage
-            ) {
-                xPercentage = it
-            }
-           MapSlider(
-                titleRes = R.string.y_axis,
-                percentage = yPercentage
-            ) {
-                yPercentage = it
-            }
-        }
-    }
-
-}
-
-@Preview(showBackground = true)
-@Composable
-fun PlotSurfacePreview() {
-    MyApplicationTheme {
-        PlotSurface()
-    }
-}
